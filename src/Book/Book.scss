@@ -1,0 +1,51 @@
+.book {
+    padding: 0 20px;
+    width: 270px;
+    margin-bottom: 30px;
+
+
+    &--inner {
+        height: 100%;
+        a {
+            height: 100%;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
+    &--front {
+        width: 100%;
+        height: 0;
+        padding-bottom: 150%;
+        position: relative;
+    }
+
+    &__details {
+        color: black;
+        text-align: center;
+        margin-top: 10px;
+        
+        .book-title {
+            font-weight: bold;
+        }
+    }
+
+
+    &-rating {
+        background: white;
+        padding: 5px;
+        color: teal;
+        position: absolute;
+        border: 2px solid teal;
+        bottom: 3px;
+        right: 3px;
+    }
+}
+
+/* .book__details span {
+    display: inline-block;
+} */
+
+

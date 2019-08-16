@@ -1,5 +1,5 @@
 import React from 'react';
-import './Book.css';
+import './Book.scss';
 
 const book = (props) => {
     const style = {

@@ -27,32 +27,48 @@ class Bookshelf extends Component {
     super(props);
     this.state = {
       ownedBooks: [],
-      currentlyReading: [],
+      user: [],
       error: null
     }
   }
 
-  getOwndedBooks(apiKey) {
+  getOwndedBooks(grKey) {
     const config = { headers: { "X-Requested-With": "XMLHttpRequest" } };
-    axios.get("https://cors-anywhere.herokuapp.com/http://www.goodreads.com/review/list/81737049.xml?key=" + apiKey + "&v=2", config).then((response) => {
+    axios.get("https://cors-anywhere.herokuapp.com/http://www.goodreads.com/review/list/81737049.xml?key=" + grKey + "&v=2", config).then((response) => {
       var data = void 0;
       xml2json.parseString(response.data, function (err, result) {
         data = result.GoodreadsResponse.reviews[0].review;
       });
       console.log(data)
       this.setState({ ownedBooks: data});
-    }).catch(function (error) {
-      this.setState({ error: error });
+    }).catch(error => {
+      this.setState({ error: true });
       console.log(error)
+    });
+  }
+
+  getUser(grKey) {
+    const config = { headers: { "X-Requested-With": "XMLHttpRequest" } };
+    axios.get("https://cors-anywhere.herokuapp.com/http://www.goodreads.com/user/show/81737049.xml?key=" + grKey, config).then((response) => {
+      var data2 = void 0;
+      xml2json.parseString(response.data, function (err, result) {
+        data2 = result.GoodreadsResponse.reviews[0].review;
+      });
+      console.log(data2)
+      this.setState({ user: data2});
+    }).catch(e => {
+      this.setState({ error: true });
+      console.log(e)
     });
   }
 
   componentDidMount() {
     // var currComp = this;
 
-    const apiKey = 'lPm1edFUSEd0Di0rRI42g';
+    // const grKey = 'lPm1edFUSEd0Di0rRI42g';
 
-    this.getOwndedBooks(apiKey);
+    this.getOwndedBooks(grKey);
+    this.getUser(grKey)
 
     
   };
@@ -73,7 +89,7 @@ class Bookshelf extends Component {
 
     const book = this.state.ownedBooks.map((v, k) => {
       const authorsList = v.book[0].authors;  
-      const isRead = v.book[0].read_at;
+      // const isRead = v.book[0].read_at;
 
       const authors = authorsList.map(function (a, i) {
         const authorList = a.author[0].name;

@@ -65,7 +65,7 @@ class Bookshelf extends Component {
   componentDidMount() {
     // var currComp = this;
 
-    // const grKey = 'lPm1edFUSEd0Di0rRI42g';
+    const grKey = 'lPm1edFUSEd0Di0rRI42g';
 
     this.getOwndedBooks(grKey);
     this.getUser(grKey)

@@ -1,16 +1,18 @@
 import React from 'react';
 import Book from '../Book/Book';
-
+import './Shelf.scss';
+import styled from 'styled-components';
 
 const Shelf = ({ name, books = [] }) => {
+
     return (
         <div className="shelf">
-            <h2>{name}</h2>
-            <div className="book-wrapper">
-              {books.map((book, i) => (
-                  <Book {...book} key={book.key} />
-              ))}
+            <div className="shelf-name">
+                <h2>{name}</h2>
             </div>
+            {books.map((book, i) => (
+                <Book {...book} key={book.key} />
+            ))}
         </div> 
     )
 }

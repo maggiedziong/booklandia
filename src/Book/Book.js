@@ -1,12 +1,13 @@
 import React from 'react';
 import './Book.scss';
 
-const book = (props) => {
+const Book = (props) => {
+    console.log(props)
+    // const props = props;
     const style = {
         backgroundImage: 'url(' + props.bookCover + ')',
         backgroundSize: 'cover'
     };
-
     return (
         <div className="book">
             <div className="book--inner">
@@ -21,10 +22,11 @@ const book = (props) => {
                         <span className="book-title">{props.bookTitle !== undefined ? props.bookTitle : 'Book Title'}</span><br />
                         <span className="book-author">{props.bookAuthor !== undefined ? props.bookAuthor : 'Book Cover'}</span>
                     </div>
+                    {props.shelf}
                 </a>
             </div>
         </div>
     )
 }
 
-export default book;
+export default Book;

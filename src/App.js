@@ -4,11 +4,9 @@ import React, {Component} from 'react';
 
 import axios from 'axios';
 import xml2json from 'xml2js';
-// import './App.css';
 import styled from 'styled-components';
 import Shelf from './Shelf/Shelf';
 import { css } from '@emotion/core';
-// Another way to import. This is recommended to reduce bundle size
 import GridLoader from 'react-spinners/GridLoader';
 
 
@@ -26,33 +24,33 @@ class Bookshelf extends Component {
   getOwndedBooks(grKey) {
     this.setState({ error: null, loading: true })
     const config = { headers: { "X-Requested-With": "XMLHttpRequest" } };
-    axios.get("https://cors-anywhere.herokuapp.com/http://www.goodreads.com/review/list/81737049.xml?key=" + grKey + "&v=2", config).then((response) => {
+    axios.get("https://cors-anywhere.herokuapp.com/http://www.goodreads.com/review/list/81737049.xml?key=" + grKey + "&v=2&per_page=50", config).then((response) => {
       var data = void 0;
       xml2json.parseString(response.data, function (err, result) {
         data = result.GoodreadsResponse.reviews[0].review;
       });
-      // console.log(data)
       this.setState({ ownedBooks: data, loading: false });
+      console.log(data)
     }).catch(error => {
       this.setState({ error: true, loading: false });
       console.log(error)
     })
   }
 
-  getUser(grKey) {
-    const config = { headers: { "X-Requested-With": "XMLHttpRequest" } };
-    axios.get("https://cors-anywhere.herokuapp.com/http://www.goodreads.com/user/show/81737049.xml?key=" + grKey, config).then((response) => {
-      var data2 = void 0;
-      xml2json.parseString(response.data, function (err, result) {
-        data2 = result.GoodreadsResponse.reviews[0].review;
-      });
-      console.log(data2)
-      this.setState({ user: data2});
-    }).catch(e => {
-      this.setState({ error: true });
-      console.log(e)
-    });
-  };
+  // getUser(grKey) {
+  //   const config = { headers: { "X-Requested-With": "XMLHttpRequest" } };
+  //   axios.get("https://cors-anywhere.herokuapp.com/http://www.goodreads.com/user/show/81737049.xml?key=" + grKey, config).then((response) => {
+  //     var data2 = void 0;
+  //     xml2json.parseString(response.data, function (err, result) {
+  //       data2 = result.GoodreadsResponse.reviews[0].review;
+  //     });
+  //     console.log(data2)
+  //     this.setState({ user: data2});
+  //   }).catch(e => {
+  //     this.setState({ error: true });
+  //     console.log(e)
+  //   });
+  // };
 
   componentDidMount() {
     const grKey = 'lPm1edFUSEd0Di0rRI42g';
@@ -76,6 +74,7 @@ class Bookshelf extends Component {
           key: k, 
           bookTitle: b.book[0].title[0], 
           bookCover: b.book[0].image_url[0], 
+          description: b.book[0].description[0], 
           url: b.book[0].link[0], 
           bookAuthor: authors[0], 
           rating: b.rating[0], 
@@ -85,7 +84,6 @@ class Bookshelf extends Component {
 
       return bookData;
     });
-
 
     const reduced = books.reduce((acc, book) => {
       if (acc[book.shelfName]) {
@@ -105,11 +103,6 @@ class Bookshelf extends Component {
       return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
-    const titleStyle = {
-      fontSize: '35px',
-      margin: '30px 40px'
-    };
-
     const override = css`
       display: block;
       margin: 100px auto;
@@ -121,11 +114,25 @@ class Bookshelf extends Component {
 
     const Bookcase = styled.section`
       position: relative;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+      
+      &:after {
+        content: '';
+        display: block;
+        border-left: 25px solid #d4c6b5;
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 5;
+      }
     `;
 
     return (
       <div className="App">
-        {/* <Title className="header" style={titleStyle}>My BookShelf</Title> */}
+        <Title titleText={'Maggies Bookshelf'} />
 
         <GridLoader
           css={override}

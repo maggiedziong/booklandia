@@ -56,12 +56,12 @@
         height: 220px;
     }
 
-    // @media (hover: hover) { 
+    @media (hover: hover) { 
         &:hover {
             -webkit-transform: rotate3d(0,1,0,35deg);
             transform: rotate3d(0,1,0,35deg);
         }
-    // }
+    }
 }
 
 .bk-book > div,

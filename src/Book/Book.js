@@ -1,6 +1,5 @@
 import React from 'react';
 import './Book.scss';
-// import styled from 'styled-components';
 
 const Book = (props) => {
     const author = props.bookAuthor !== undefined ? props.bookAuthor : 'Book Cover';
@@ -18,6 +17,8 @@ const Book = (props) => {
         const book = e.target.closest('.book');
         const defaultBook = document.querySelector('.bk-viewback');
         const zindex = document.querySelector('.infront');
+
+        console.log('click');
 
         if ( book.classList.contains('bk-viewback') ) {
             book.classList.remove('bk-viewback');
@@ -38,7 +39,7 @@ const Book = (props) => {
     }
 
     return (
-        <div className="book"  onClick={flipBook}>
+        <div className="book" onClick={flipBook}>
           
             <div className="book--inner bk-book">
                 <div className="bk-front" style={style}>

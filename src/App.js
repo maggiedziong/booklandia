@@ -24,7 +24,7 @@ class Bookshelf extends Component {
   getOwndedBooks(grKey) {
     this.setState({ error: null, loading: true })
     const config = { headers: { "X-Requested-With": "XMLHttpRequest" } };
-    axios.get("https://cors-anywhere.herokuapp.com/http://www.goodreads.com/review/list/81737049.xml?key=" + grKey + "&v=2&per_page=50", config).then((response) => {
+    axios.get("https://cors-anywhere.herokuapp.com/http://www.goodreads.com/review/list/81737049.xml?key=" + grKey + "&v=2&per_page=20", config).then((response) => {
       var data = void 0;
       xml2json.parseString(response.data, function (err, result) {
         data = result.GoodreadsResponse.reviews[0].review;

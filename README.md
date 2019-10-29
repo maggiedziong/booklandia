@@ -1,6 +1,6 @@
 
 
-## A styled personal bookshelf to display categorised books with Goodreads API. 
+## A styled personal bookshelf to display categorised books using React and Goodreads API. 
 [View demo](https://wizardly-mclean-af01ac.netlify.com/)
 
 #

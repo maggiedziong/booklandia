@@ -33,11 +33,13 @@ const Book = (props) => {
             book.classList.add('bk-viewback');
             book.classList.add('infront');
             book.classList.remove('bk-bookdefault');
+            book.scrollIntoView({behavior: "smooth", block: "center", inline: "center"});
         }
     }
 
     return (
         <div className="book"  onClick={flipBook}>
+          
             <div className="book--inner bk-book">
                 <div className="bk-front" style={style}>
                     <div className="bk-cover">
@@ -76,6 +78,7 @@ const Book = (props) => {
                 <div className="bk-top"></div>
                 <div className="bk-bottom"></div>
             </div>
+            
         </div>
     )
 }

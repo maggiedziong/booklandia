@@ -1,13 +1,13 @@
 .book {
     padding: 0 2%;
-    width: 33.3%;
+    width: 50%;
     // max-width: 200px;
     box-sizing: border-box;
     // margin-bottom: -30px;
     position: relative;
     z-index: 1;
     margin-top: 75px;
-    height: 220px;
+    height: 190px;
     margin-bottom: -5px;
     cursor: grab;
 
@@ -23,71 +23,44 @@
     }
 
     @media screen and (min-width: 768px) {
-        width: 20%;
+        width: 33.3%;
+        height: 220px;
     }
 
-    @media screen and (min-width: 1025px) {
-        width: 16.666%;
+    @media screen and (min-width: 1024px) {
+        width: 25%;
     }
 
-    &--inner {
-        height: 100%;
-        max-width: 150px;
+    @media screen and (min-width: 1124px) {
     }
 
-    &--front {
-        width: 100%;
-        height: 0;
-        padding-bottom: 150%;
-        position: relative;
-    }
-
-    &__details {
-        color: black;
-        text-align: center;
-        margin-bottom: 20px;
-        
-        .book-title {
-            font-weight: bold;
-        }
-    }
-
-
-    &-rating {
-        background: white;
-        padding: 5px;
-        color: teal;
-        position: absolute;
-        border: 2px solid teal;
-        bottom: 3px;
-        right: 3px;
-    }
-
+   
     &:last-child {
         margin-top: 100px;
     }
 }
 
-
-.no-touch .bk-info button:hover,
-.bk-info button.bk-active {
-	background: #d0544e;
-}
-
 .bk-book {
 	position: absolute;
-    width: 100%;
+    width: 150px;
+    height: 190px;
+    max-width: 95%;
     z-index: 4;
-	// height: 400px;
 	-webkit-transform-style: preserve-3d;
 	transform-style: preserve-3d;
 	-webkit-transition: -webkit-transform .5s;
     transition: transform .5s;
 
-    &:hover {
-        -webkit-transform: rotate3d(0,1,0,35deg);
-        transform: rotate3d(0,1,0,35deg);
+    @media screen and (min-width: 768px) {
+        height: 220px;
     }
+
+    @media (hover: hover) { 
+        &:hover {
+            -webkit-transform: rotate3d(0,1,0,35deg);
+            transform: rotate3d(0,1,0,35deg);
+        }
+     }
 }
 
 .bk-book > div,
@@ -144,7 +117,11 @@
 .bk-back,
 .bk-front > div {
     width: 100%;
-    height: 220px;
+    height: 190px;
+
+    @media screen and (min-width: 768px) {
+        height: 220px;
+    }
 }
 
 .bk-left,
@@ -274,7 +251,6 @@
 	box-shadow: 1px 0 3px rgba(255, 255, 255, 0.1);
 }
 
-
 /* Transform classes */
 .infront {z-index: 1000;}
 .bk-viewback {
@@ -284,3 +260,17 @@
     }
 }
 
+.book {
+    &:nth-child(even) {
+        &.bk-viewback .bk-book {
+            right: 50%;
+        }
+    }
+
+
+    &:nth-child(odd) {
+        &.bk-viewback .bk-book {
+            left: 50%;
+        }
+    }
+}

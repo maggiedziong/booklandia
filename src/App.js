@@ -116,8 +116,8 @@ class Bookshelf extends Component {
       position: relative;
       max-width: 1400px;
       margin: 0 auto;
-      width: 100%;
-      
+      width: 87%;
+
       &:after {
         content: '';
         display: block;
